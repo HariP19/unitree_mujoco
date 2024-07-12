@@ -66,6 +66,17 @@ void UnitreeSdk2Bridge::PublishLowState()
             low_state.imu_state().accelerometer()[1] = mj_data_->sensordata[dim_motor_sensor_ + 8];
             low_state.imu_state().accelerometer()[2] = mj_data_->sensordata[dim_motor_sensor_ + 9];
         }
+
+        for (int i = 0; i < 4; i++) 
+        {
+            double fx = mj_data_->sensordata[dim_motor_sensor_ + 16 + i*3];
+            double fy = mj_data_->sensordata[dim_motor_sensor_ + 16 + i*3 + 1];
+            double fz = mj_data_->sensordata[dim_motor_sensor_ + 16 + i*3 + 2];
+            
+            // Calculate the norm of the force vector
+            double force_norm = std::sqrt(fx*fx + fy*fy + fz*fz);
+            low_state.foot_force()[i] = force_norm;
+        }
         
         if (js_)
         {
