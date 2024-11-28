@@ -1,4 +1,6 @@
 <mujoco model="go1">
+<option integrator="RK4" gravity="0 0 -9.81"/>
+<!-- <option integrator="RK4" gravity="0 0 0"/> -->
   <compiler angle="radian" meshdir="assets" autolimits="true"/>
 
   <option cone="elliptic" impratio="100"/>
@@ -9,14 +11,14 @@
       <joint axis="0 1 0" damping="0.1" armature="0.01" frictionloss="0.2"/>
       <motor ctrlrange="-23.7 23.7"/>
       <default class="abduction">
-        <joint axis="1 0 0" damping="1" range="-0.863 0.863"/>
+        <joint axis="1 0 0" damping="1" range="-1.0472 1.0472"/>
       </default>
       <default class="hip">
-        <joint range="-0.686 4.501"/>
+        <joint range="-1.5708 4.501"/>
       </default>
       <default class="knee">
         <joint range="-2.818 -0.888"/>
-        <motor ctrlrange="-35.55 35.55"/>
+        <motor ctrlrange="-45.43 45.43"/>
       </default>
       <default class="visual">
         <geom type="mesh" contype="0" conaffinity="0" group="2" material="dark"/>
@@ -81,6 +83,7 @@
       <inertial pos="0.0223 0.002 -0.0005" quat="-0.00342088 0.705204 0.000106698 0.708996" mass="5.204"
         diaginertia="0.0716565 0.0630105 0.0168101"/>
       <freejoint/>
+      
       <geom class="visual" mesh="trunk"/>
       <geom class="collision" size="0.125 0.04 0.057" type="box"/>
       <geom class="collision" quat="1 0 1 0" pos="0 -0.04 0" size="0.058 0.125" type="cylinder"/>
